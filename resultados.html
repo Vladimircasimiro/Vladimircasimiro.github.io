@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados da Votação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .resultado {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #007bff;
+        }
+
+        .reset-button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resultados da Votação</h1>
+        <div class="resultado" id="resultadoA">Candidato A: 0 votos</div>
+        <div class="resultado" id="resultadoB">Candidato B: 0 votos</div>
+        <div class="resultado" id="resultadoC">Candidato C: 0 votos</div>
+        <button class="reset-button" onclick="resetarVotos()">Resetar Votos</button>
+    </div>
+
+    <script>
+        function mostrarResultados() {
+            let votosA = localStorage.getItem("votosA") || 0;
+            let votosB = localStorage.getItem("votosB") || 0;
+            let votosC = localStorage.getItem("votosC") || 0;
+
+            document.getElementById("resultadoA").innerText = `Candidato A: ${votosA} votos`;
+            document.getElementById("resultadoB").innerText = `Candidato B: ${votosB} votos`;
+            document.getElementById("resultadoC").innerText = `Candidato C: ${votosC} votos`;
+        }
+
+        function resetarVotos() {
+            // Remove os votos do localStorage
+            localStorage.removeItem("votosA");
+            localStorage.removeItem("votosB");
+            localStorage.removeItem("votosC");
+
+            // Atualiza a exibição para 0 votos
+            document.getElementById("resultadoA").innerText = "Candidato A: 0 votos";
+            document.getElementById("resultadoB").innerText = "Candidato B: 0 votos";
+            document.getElementById("resultadoC").innerText = "Candidato C: 0 votos";
+
+            alert("Votos resetados com sucesso!");
+        }
+
+        // Exibe os resultados ao carregar a página
+        mostrarResultados();
+    </script>
+</body>
+</html>
